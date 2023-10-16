@@ -8,14 +8,14 @@ public class Main {
                 System.out.println("Снято 6000 сом, текущий баланс: " + account.getAmount() + " сом.");
             } catch (LimitException e) {
                 try {
-                    account.withDraw(3000);
+                    account.withDraw(6000);
                 } catch (LimitException ex) {
-                    throw new RuntimeException(ex);
+                    System.out.println("Исключение: " + e.getMessage());
+                    System.out.println("Максимальная доступная сумма для снятия: " + e.getRemainingAmount() + " сом.");
+                    System.out.println("Снято " + e.getRemainingAmount() + " сом.");
+                    System.out.println("Остаток на счете:0 ");
+                    break;
                 }
-                System.out.println("Исключение: " + e.getMessage());
-                System.out.println("Максимальная доступная сумма для снятия: " + e.getRemainingAmount() + " сом.");
-                System.out.println("Снято " + e.getRemainingAmount() + " сом. Остаток на счете: " + account.getAmount());
-                break;
             }
         }
     }
